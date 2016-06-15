@@ -18,4 +18,19 @@
  */
 module.exports = ( length ) => {
 
+  var results = [];
+
+  for (let i = 1; i < length + 1; i++) {
+    var tempStr = '';
+    if (i % 3 === 0) {
+      tempStr += 'fizz';
+    }
+    if (i % 5 === 0) {
+      tempStr += 'buzz';
+    }
+    tempStr ? results.push(tempStr) : results.push(i);
+  }
+
+  return results;
+
 };
