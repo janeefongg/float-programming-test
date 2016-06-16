@@ -11,11 +11,19 @@ test( 'DEEPFINDER: exports deepFinder method', t => {
 
 test( 'DEEPFINDER: finds strings that start with a', t => {
     const input = [ 'ant', 'baby', [ 'apple', 'banana', 'carrot' ], {
-        foo: 'aardvark'
+        foo: 'aardvark',
+        bar: 'avatar',
+        baz: 'toothpaste',
+        foobar: ['animal', 'games', 'cleaning'],
+        foobaz: {
+            magic: 'lightning',
+            healthpoints: 'twenty',
+            equipment: ['helmet', 'armor', 'sword', 'shield']
+        }
     }, 'allegory' ];
     const result = fpt.deepFinder( input, value => /^a/i.test( value ) );
 
     t.ok( result, 'generated a result' );
-    t.deepEqual( result, [ 'ant', 'apple', 'aardvark', 'allegory' ], 'result is correct' );
+    t.deepEqual( result, [ 'ant', 'apple', 'aardvark', 'avatar', 'animal', 'armor', 'allegory'], 'result is correct' );
     t.end();
 } );

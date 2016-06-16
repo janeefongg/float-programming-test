@@ -17,3 +17,30 @@ test( 'BALANCED PARENTHESES: returns true for balanced string', t => {
     t.equal( result, true, 'result is correct' );
     t.end();
 } );
+
+test( 'BALANCED PARENTHESES: returns false for unbalanced string', t => {
+    const input = '(y + x ()';
+const result = fpt.balancedParentheses( input );
+
+t.equal( typeof result, 'boolean', 'generated a boolean result' );
+t.equal( result, false, 'result is correct' );
+t.end();
+} );
+
+test( 'BALANCED PARENTHESES: returns true for balanced nested string', t => {
+    const input = '(y + (x + z))';
+const result = fpt.balancedParentheses( input );
+
+t.equal( typeof result, 'boolean', 'generated a boolean result' );
+t.equal( result, true, 'result is correct' );
+t.end();
+} );
+
+test( 'BALANCED PARENTHESES: returns false for unbalanced nested string', t => {
+    const input = '([y])(() + (x + z])';
+const result = fpt.balancedParentheses( input );
+
+t.equal( typeof result, 'boolean', 'generated a boolean result' );
+t.equal( result, false, 'result is correct' );
+t.end();
+} );

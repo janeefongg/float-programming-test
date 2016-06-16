@@ -18,24 +18,23 @@ module.exports = ( input, test ) => {
   var results = [];
 
   const recurse = (item) => {
-    for (let i = 0; i < item.length; i++) {
-      var currentItem = item[i];
-      if (Array.isArray(currentItem)) { // check if currentItem is an array, if it is, recurse.
-        recurse(currentItem);
-      } else if (typeof currentItem === "object") { // check if currentItem is an object, if it is, for in loop
-        for (let key in currentItem) {
-          if (test(currentItem[key])) {
-            results.push(currentItem[key]);
-          }
-        }
-      } else if (test(currentItem)) { // if currentItem is not a collection, run through test function
-        results.push(currentItem);
+
+    if (typeof item === 'string') {
+      if (test(item)) {
+        results.push(item);
+      }
+    } else if (Array.isArray(item)) {
+      for (var i = 0; i < item.length; i++) {
+        recurse(item[i]);
+      }
+    } else {
+      for (var key in item) {
+        recurse(item[key]);
       }
     }
-  }
+  };
 
   recurse(input);
-
   return results;
 
 };
